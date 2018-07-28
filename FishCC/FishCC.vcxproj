@@ -34,6 +34,7 @@
     <ClCompile Include="..\path.c" />
     <ClCompile Include="..\set.c" />
     <ClCompile Include="..\vector.c" />
+    <ClCompile Include="windows_patches.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\8cc.h" />

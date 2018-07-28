@@ -22,7 +22,7 @@ static Vector *tmpfiles = &EMPTY_VECTOR;
 
 static void usage(int exitcode) {
     fprintf(exitcode ? stderr : stdout,
-            "Usage: 8cc [ -E ][ -a ] [ -h ] <file>\n\n"
+            "Usage: FishCC [ -E ][ -a ] [ -h ] <file>\n\n"
             "\n"
             "  -I<path>          add to include path\n"
             "  -E                print preprocessed source code\n"

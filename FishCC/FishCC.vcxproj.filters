@@ -60,6 +60,9 @@
     <ClCompile Include="..\vector.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="windows_patches.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\8cc.h">
