@@ -34,7 +34,7 @@ File *make_file(FILE *file, char *name) {
     r->line = 1;
     r->column = 1;
     struct stat st;
-    if (fstat(fileno(file), &st) == -1)
+    if (fstat(_fileno(file), &st) == -1)
         error("fstat failed: %s", strerror(errno));
     r->mtime = st.st_mtime;
     return r;

@@ -8,6 +8,8 @@
 #include <unistd.h>
 #include "8cc.h"
 
+#include <getopt.h>
+
 static char *infile;
 static char *outfile;
 static char *asmfile;
@@ -47,11 +49,11 @@ static void usage(int exitcode) {
 
 static void delete_temp_files() {
     for (int i = 0; i < vec_len(tmpfiles); i++)
-        unlink(vec_get(tmpfiles, i));
+        _unlink(vec_get(tmpfiles, i));
 }
 
 static char *base(char *path) {
-    return basename(strdup(path));
+    return basename(_strdup(path));
 }
 
 static char *replace_suffix(char *filename, char suffix) {
@@ -165,44 +167,54 @@ static void preprocess() {
 }
 
 int main(int argc, char **argv) {
-    setbuf(stdout, NULL);
-    if (atexit(delete_temp_files))
-        perror("atexit");
-    parseopt(argc, argv);
-    lex_init(infile);
-    cpp_init();
-    parse_init();
-    set_output_file(open_asmfile());
-    if (buf_len(cppdefs) > 0)
-        read_from_string(buf_body(cppdefs));
+	setbuf(stdout, NULL);
 
-    if (cpponly)
-        preprocess();
+	if (atexit(delete_temp_files))
+		perror("atexit");
 
-    Vector *toplevels = read_toplevels();
-    for (int i = 0; i < vec_len(toplevels); i++) {
-        Node *v = vec_get(toplevels, i);
-        if (dumpast)
-            printf("%s", node2s(v));
-        else
-            emit_toplevel(v);
-    }
+	parseopt(argc, argv);
+	lex_init(infile);
+	cpp_init();
+	parse_init();
+	set_output_file(open_asmfile());
 
-    close_output_file();
+	if (buf_len(cppdefs) > 0)
+		read_from_string(buf_body(cppdefs));
 
-    if (!dumpast && !dumpasm) {
-        if (!outfile)
-            outfile = replace_suffix(base(infile), 'o');
-        pid_t pid = fork();
-        if (pid < 0) perror("fork");
-        if (pid == 0) {
-            execlp("as", "as", "-o", outfile, "-c", asmfile, (char *)NULL);
-            perror("execl failed");
-        }
-        int status;
-        waitpid(pid, &status, 0);
-        if (status < 0)
-            error("as failed");
-    }
-    return 0;
+	if (cpponly)
+		preprocess();
+
+	Vector *toplevels = read_toplevels();
+	for (int i = 0; i < vec_len(toplevels); i++) {
+		Node *v = vec_get(toplevels, i);
+		if (dumpast)
+			printf("%s", node2s(v));
+		else
+			emit_toplevel(v);
+	}
+
+	close_output_file();
+
+	if (!dumpast && !dumpasm) {
+		if (!outfile)
+			outfile = replace_suffix(base(infile), 'o');
+
+		// TODO: Assemble here
+		/*pid_t pid = fork();
+
+		if (pid < 0)
+			error("fork");
+
+		if (pid == 0) {
+			execlp("as", "as", "-o", outfile, "-c", asmfile, (char *)NULL);
+			perror("execl failed");
+		}
+
+		int status;
+		waitpid(pid, &status, 0);
+
+		if (status < 0)
+			error("as failed");*/
+	}
+	return 0;
 }

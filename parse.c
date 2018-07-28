@@ -211,8 +211,8 @@ static Node *ast_typedef(Type *ty, char *name) {
 }
 
 static Node *ast_string(int enc, char *str, int len) {
-    Type *ty;
-    char *body;
+	Type *ty = NULL;
+	char *body = "";
 
     switch (enc) {
     case ENC_NONE:

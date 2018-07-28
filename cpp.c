@@ -14,10 +14,17 @@
 #include <unistd.h>
 #include "8cc.h"
 
-static Map *macros = &EMPTY_MAP;
-static Map *once = &EMPTY_MAP;
-static Map *keywords = &EMPTY_MAP;
+static Map macros_val = { 0 };
+static Map *macros = &macros_val;
+
+static Map once_val = { 0 };
+static Map *once = &once_val;
+
+static Map keywords_val = { 0 };
+static Map *keywords = &keywords_val;
+
 static Map *include_guard = &EMPTY_MAP;
+
 static Vector *cond_incl_stack = &EMPTY_VECTOR;
 static Vector *std_include_path = &EMPTY_VECTOR;
 static struct tm now;
@@ -700,7 +707,7 @@ static void read_include(Token *hash, File *file, bool isimport) {
         goto err;
     }
     if (!std) {
-        char *dir = file->name ? dirname(strdup(file->name)) : ".";
+        char *dir = file->name ? dirname(_strdup(file->name)) : ".";
         if (try_include(dir, filename, isimport))
             return;
     }
@@ -862,13 +869,13 @@ static void make_token_pushback(Token *tmpl, int kind, char *sval) {
 static void handle_date_macro(Token *tmpl) {
     char buf[20];
     strftime(buf, sizeof(buf), "%b %e %Y", &now);
-    make_token_pushback(tmpl, TSTRING, strdup(buf));
+    make_token_pushback(tmpl, TSTRING, _strdup(buf));
 }
 
 static void handle_time_macro(Token *tmpl) {
     char buf[10];
     strftime(buf, sizeof(buf), "%T", &now);
-    make_token_pushback(tmpl, TSTRING, strdup(buf));
+    make_token_pushback(tmpl, TSTRING, _strdup(buf));
 }
 
 static void handle_timestamp_macro(Token *tmpl) {
@@ -876,7 +883,7 @@ static void handle_timestamp_macro(Token *tmpl) {
     // and time of the last modification time of the current source file.
     char buf[30];
     strftime(buf, sizeof(buf), "%a %b %e %T %Y", localtime(&tmpl->file->mtime));
-    make_token_pushback(tmpl, TSTRING, strdup(buf));
+    make_token_pushback(tmpl, TSTRING, _strdup(buf));
 }
 
 static void handle_file_macro(Token *tmpl) {

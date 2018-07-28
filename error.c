@@ -9,7 +9,7 @@ bool enable_warning = true;
 bool warning_is_error = false;
 
 static void print_error(char *line, char *pos, char *label, char *fmt, va_list args) {
-    fprintf(stderr, isatty(fileno(stderr)) ? "\e[1;31m[%s]\e[0m " : "[%s] ", label);
+    fprintf(stderr, isatty(_fileno(stderr)) ? "\e[1;31m[%s]\e[0m " : "[%s] ", label);
     fprintf(stderr, "%s: %s: ", line, pos);
     vfprintf(stderr, fmt, args);
     fprintf(stderr, "\n");

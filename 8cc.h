@@ -294,8 +294,8 @@ extern Type *type_float;
 extern Type *type_double;
 extern Type *type_ldouble;
 
-#define EMPTY_MAP ((Map){})
-#define EMPTY_VECTOR ((Vector){})
+#define EMPTY_MAP ((Map){ 0 })
+#define EMPTY_VECTOR ((Vector){ 0 })
 
 // encoding.c
 Buffer *to_utf16(char *p, int len);

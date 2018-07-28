@@ -20,8 +20,13 @@ static int stackpos;
 static int numgp;
 static int numfp;
 static FILE *outputfp;
-static Map *source_files = &EMPTY_MAP;
-static Map *source_lines = &EMPTY_MAP;
+
+static Map source_files_val = { 0 };
+static Map *source_files = &source_files_val;
+
+static Map source_lines_val = { 0 };
+static Map *source_lines = &source_lines_val;
+
 static char *last_loc = "";
 
 static void emit_addr(Node *node);
@@ -498,7 +503,7 @@ static void emit_binop_int_arith(Node *node) {
 
 static void emit_binop_float_arith(Node *node) {
     SAVE;
-    char *op;
+	char *op = "";
     bool isdouble = (node->ty->kind == KIND_DOUBLE);
     switch (node->kind) {
     case '+': op = (isdouble ? "addsd" : "addss"); break;
@@ -808,7 +813,7 @@ static char **read_source_file(char *file) {
     if (!fp)
         return NULL;
     struct stat st;
-    fstat(fileno(fp), &st);
+    fstat(_fileno(fp), &st);
     char *buf = malloc(st.st_size + 1);
     if (fread(buf, 1, st.st_size, fp) != st.st_size) {
         fclose(fp);
@@ -839,13 +844,13 @@ static void maybe_print_source_loc(Node *node) {
     if (!node->sourceLoc)
         return;
     char *file = node->sourceLoc->file;
-    long fileno = (long)map_get(source_files, file);
-    if (!fileno) {
-        fileno = map_len(source_files) + 1;
-        map_put(source_files, file, (void *)fileno);
-        emit(".file %ld \"%s\"", fileno, quote_cstring(file));
+    long _fileno = (long)map_get(source_files, file);
+    if (!_fileno) {
+        _fileno = map_len(source_files) + 1;
+        map_put(source_files, file, (void *)_fileno);
+        emit(".file %ld \"%s\"", _fileno, quote_cstring(file));
     }
-    char *loc = format(".loc %ld %d 0", fileno, node->sourceLoc->line);
+    char *loc = format(".loc %ld %d 0", _fileno, node->sourceLoc->line);
     if (strcmp(loc, last_loc)) {
         emit("%s", loc);
         maybe_print_source_line(file, node->sourceLoc->line);
