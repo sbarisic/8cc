@@ -1,27 +1,33 @@
-#include "..\8cc.h"
+//#include "..\8cc.h"
 
 #include <string.h>
+#include <FishCCLib.h>
+
+//#include <Windows.h>
+#include <time.h>
+#include <io.h>
 
 int strncasecmp(const char *string1, const char *string2, size_t count) {
-	return strncmp(string1, string2, count);
+	return csharp_strncasecmp(string1, string2, count);
 }
 
 int strcasecmp(const char *string1, const char *string2) {
-	return strcmp(string1, string2);
+	return csharp_strcasecmp(string1, string2);
 }
 
 char *dirname(char *path) {
-	return NULL;
+	return csharp_dirname(path);
 }
 
 char *basename(char *path) {
-	return NULL;
+	return csharp_basename(path);
 }
 
 int mkstemps(char *template, int suffixlen) {
-	return 0;
+	return csharp_mkstemps(template, suffixlen);
 }
 
 struct tm *localtime_r(const time_t *timep, struct tm *result) {
-	return NULL;
+	*result = *localtime(timep);
+	return result;
 }

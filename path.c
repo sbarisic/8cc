@@ -6,9 +6,14 @@
 #include <unistd.h>
 #include "8cc.h"
 
+#include <FishCCLib.h>
+
 // Returns the shortest path for the given full path to a file.
 static char *clean(char *p) {
-    assert(*p == '/');
+	return csharp_clean(p);
+
+    /*assert(*p == '/');
+
     char buf[PATH_MAX];
     char *q = buf;
     *q++ = '/';
@@ -36,7 +41,7 @@ static char *clean(char *p) {
         }
         *q = '\0';
         return _strdup(buf);
-    }
+    }*/
 }
 
 // Returns the shortest absolute path for the given path.

@@ -1514,6 +1514,7 @@ static void emit_func_prologue(Node *func) {
     }
 }
 
+
 void emit_toplevel(Node *v) {
     stackpos = 8;
     if (v->kind == AST_FUNC) {
@@ -1526,3 +1527,4 @@ void emit_toplevel(Node *v) {
         error("internal error");
     }
 }
+//*/
