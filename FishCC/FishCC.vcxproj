@@ -26,7 +26,7 @@
     <ClCompile Include="..\encoding.c" />
     <ClCompile Include="..\error.c" />
     <ClCompile Include="..\file.c" />
-    <ClCompile Include="..\gen.c" />
+    <ClCompile Include="..\gen_bytecode.c" />
     <ClCompile Include="..\lex.c" />
     <ClCompile Include="..\main.c" />
     <ClCompile Include="..\map.c" />

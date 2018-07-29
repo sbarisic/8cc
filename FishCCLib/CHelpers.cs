@@ -47,7 +47,19 @@ namespace FishCCLib {
 
 
 		[DllExport("csharp_mkstemps", CallingConvention.Cdecl)]
-		public static int MakeTemp(string Dir, int SuffixLen) {
+		public static int MakeTemp(IntPtr Dir, int SuffixLen) {
+			int Len = 0;
+			while (Marshal.ReadByte(Dir, Len) != 0)
+				Len++;
+
+			string DirStr = Marshal.PtrToStringAnsi(Dir, Len);
+
+			Random Rnd = new Random();
+			string RndFileName = "_tmp_" + Rnd.Next(10000, 99999) + Path.GetExtension(DirStr);
+
+			byte[] Bytes = Encoding.ASCII.GetBytes(RndFileName);
+			Marshal.Copy(Bytes, 0, Dir, Bytes.Length);
+			Marshal.WriteByte(Dir, Bytes.Length, 0);
 
 			return 42;
 		}

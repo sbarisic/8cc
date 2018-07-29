@@ -198,6 +198,7 @@ typedef struct Node {
 	int kind;
 	Type *ty;
 	SourceLoc *sourceLoc;
+
 	union {
 		// Char, int, or long
 		long ival;

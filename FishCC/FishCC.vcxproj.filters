@@ -36,9 +36,6 @@
     <ClCompile Include="..\file.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\gen.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\lex.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -61,6 +58,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="windows_patches.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\gen_bytecode.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

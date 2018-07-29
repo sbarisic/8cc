@@ -73,14 +73,14 @@ static FILE *open_asmfile() {
 		asmfile = outfile ? outfile : replace_suffix(base(infile), 's');
 	} else {
 		//assert("Creating temporary file not implemented");
-		assert(true);
+		//assert(false);
 
-		/*asmfile = format("/tmp/8ccXXXXXX.s");
+		asmfile = format("/tmp/8ccXXXXXX.s");
 
 		if (!mkstemps(asmfile, 2))
 			perror("mkstemps");
 
-		vec_push(tmpfiles, asmfile);*/
+		vec_push(tmpfiles, asmfile);
 	}
 
 	if (!strcmp(asmfile, "-"))
@@ -143,6 +143,7 @@ static void parseopt(int argc, char **argv) {
 			case 'g': break;
 			case 'o': outfile = optarg; break;
 			case 'w': enable_warning = false; break;
+			case 'a': parse_f_arg("dump-ast"); break;
 			case 'h':
 				usage(0);
 			default:
