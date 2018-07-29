@@ -40,4 +40,6 @@ SUB_CST REG, CONST                             - Subtract CONST from REG and sto
 CMP REG0, REG1                                 - Compare REG0 and REG1
 
 JE LABEL                                       - Jump if zero
+
+LEA REG, LABEL                                 - Loads address of label into register
 ```
