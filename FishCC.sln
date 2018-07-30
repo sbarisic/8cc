@@ -10,6 +10,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FishCC", "FishCC\FishCC.vcx
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishCCLib", "FishCCLib\FishCCLib.csproj", "{7058DFE2-F6D3-48EB-A70A-0ADDB93BDB0E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishAsm", "FishAsm\FishAsm.csproj", "{4EE3C4DE-E66B-4018-836E-830EC6E614B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FishcodeVM", "FishcodeVM\FishcodeVM.csproj", "{15B514AA-137D-414E-B486-7683D3827862}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +36,22 @@ Global
 		{7058DFE2-F6D3-48EB-A70A-0ADDB93BDB0E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7058DFE2-F6D3-48EB-A70A-0ADDB93BDB0E}.Release|x64.ActiveCfg = Release|Any CPU
 		{7058DFE2-F6D3-48EB-A70A-0ADDB93BDB0E}.Release|x64.Build.0 = Release|Any CPU
+		{4EE3C4DE-E66B-4018-836E-830EC6E614B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EE3C4DE-E66B-4018-836E-830EC6E614B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EE3C4DE-E66B-4018-836E-830EC6E614B8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4EE3C4DE-E66B-4018-836E-830EC6E614B8}.Debug|x64.Build.0 = Debug|Any CPU
+		{4EE3C4DE-E66B-4018-836E-830EC6E614B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EE3C4DE-E66B-4018-836E-830EC6E614B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EE3C4DE-E66B-4018-836E-830EC6E614B8}.Release|x64.ActiveCfg = Release|Any CPU
+		{4EE3C4DE-E66B-4018-836E-830EC6E614B8}.Release|x64.Build.0 = Release|Any CPU
+		{15B514AA-137D-414E-B486-7683D3827862}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15B514AA-137D-414E-B486-7683D3827862}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15B514AA-137D-414E-B486-7683D3827862}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{15B514AA-137D-414E-B486-7683D3827862}.Debug|x64.Build.0 = Debug|Any CPU
+		{15B514AA-137D-414E-B486-7683D3827862}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15B514AA-137D-414E-B486-7683D3827862}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15B514AA-137D-414E-B486-7683D3827862}.Release|x64.ActiveCfg = Release|Any CPU
+		{15B514AA-137D-414E-B486-7683D3827862}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

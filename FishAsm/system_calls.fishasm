@@ -1,0 +1,19 @@
+﻿.SECTION text
+
+.GLOBAL Write
+Write:
+	INT 100
+	RET
+	.__END:
+
+.GLOBAL WriteLine
+WriteLine:
+	INT 101
+	RET
+	.__END:
+
+.GLOBAL Exit
+Exit:
+	INT 42
+	RET
+	.__END:

@@ -1852,6 +1852,8 @@ void emit_toplevel(Node *v) {
 
 		//if (needs_ret)
 		emit_ret();
+
+		//emit_noindent("%s.__END:", v->fname);
 		emit(".__END:", v->fname);
 	} else if (v->kind == AST_DECL) {
 		emit_global_var(v);
